@@ -9,19 +9,19 @@ module.exports.homelist = function(req, res, next) {
      locations: [{
         name: "Starcups",
         address: "125 High Street, Reading, RG6 1PS",
-        ratings:  3,
+        rating: 3,
         facilities: ["Hot drinks", "Food", "Premium wifi"],
         distance: "100m"
        },{
        	name: "White House",
         address: "Ile-ife Street, Along Moremi, REX 150",
-        ratings: 4,
+        rating: 4,
         facilities: ["Cold drinks", "Snacks", "Burgers", "Premium wifi"],
         distance: "120m"
        },{
         name: "Afrika",
         address: "Angola Hall, Afrikas Block, D Buttery",
-        ratings: 2,
+        rating: 2,
         facilities: ["Cold drinks", "Delicious Beans"],
         distance: "90m"
      }]
