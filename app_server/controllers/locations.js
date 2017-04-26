@@ -41,8 +41,8 @@ module.exports.locationinfo = function(req, res, next) {
       name: 'Starcups',
       address: '125 High Street, Reading, RG6 1PS',
       rating: 3,
-      coords: {lat: 51.455041, lng: -0.9690884},
-      openingTimes: [{
+      coords: {lat: 9.1518679 , lng: 7.353768400000035},
+      openingTimes: [{ 
        days: 'Monday - Friday',
        opening: '7:00am',
        closing: '7:00pm',
