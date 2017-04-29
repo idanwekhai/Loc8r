@@ -1,32 +1,43 @@
+var request = require('request');
+var apiOptions = {
+    server : "http://localhost:3000"
+   };
+   if (process.env.NODE_ENV === 'production') {
+      apiOptions.server = "https://getting-mean-loc8r.herokuapp.com";
+}
+
+var renderHomePage = function(req, res, responseBody){
+  res.render('locations-list', { 
+    title: 'Loc8r - find a place to work with wifi',
+    pageHeader: {
+      title: 'Loc8r',
+      strapline: 'Find place to work with wifi near you!'
+    },
+    sidebar: "Looking for wifi and a seat? Loc8r helps you find places to work when out and about. Perhaps with coffee, cake or a pint? Let Loc8r help you find the place you're looking for.",
+    locations: responseBody,
+  });
+};
+
 /*Get 'home' page*/
 module.exports.homelist = function(req, res, next) {
-  res.render('locations-list', { 
-  	title: 'Loc8r - find a place to work with wifi',
-  	pageHeader: {
-  		title: 'Loc8r',
-  		strapline: 'Find place to work with wifi near you!'
-  	},
-     sidebar: "Looking for wifi and a seat? Loc8r helps you find places to work when out and about. Perhaps with coffee, cake or a pint? Let Loc8r help you find the place you're looking for.",
-     locations: [{
-        name: "Starcups",
-        address: "125 High Street, Reading, RG6 1PS",
-        rating: 3,
-        facilities: ["Hot drinks", "Food", "Premium wifi"],
-        distance: "100m"
-       },{
-       	name: "White House",
-        address: "Ile-ife Street, Along Moremi, REX 150",
-        rating: 4,
-        facilities: ["Cold drinks", "Snacks", "Burgers", "Premium wifi"],
-        distance: "120m"
-       },{
-        name: "Afrika",
-        address: "Angola Hall, Afrikas Block, D Buttery",
-        rating: 2,
-        facilities: ["Cold drinks", "Delicious Beans"],
-        distance: "90m"
-     }]
-  });
+  var requestOptions, path;
+  path = '/api/locations';
+  requestOptions = {
+     url : apiOptions.server + path,
+     method : "GET",
+     json : {},
+     qs : {
+       lng : -0.7992599,
+       lat : 51.378091,
+       maxDistance : 20
+     }
+   };
+ request(
+    requestOptions,
+    function(err, response, body) {
+      renderHomePage(req, res, body);
+    }
+  );
 };
 
 /*Get 'location info' page*/

@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
 
+//subDocument to laction schema
 var reviewSchema = new mongoose.Schema({
     author: String,
     rating: {type: Number, "default": 0, min: 0, max: 5},
@@ -8,6 +9,7 @@ var reviewSchema = new mongoose.Schema({
     createdOn: {type: Date, "default": Date.now}
  });
 
+//subdocument to LocationSchema
 var openingTimeSchema = new mongoose.Schema({
     days: {type: String, required: true}, 
     opening: String,
@@ -26,5 +28,5 @@ var locationSchema = new mongoose.Schema({
     reviews: [reviewSchema]
 });
 
+//Name is first argument
 mongoose.model('Location', locationSchema);
-
